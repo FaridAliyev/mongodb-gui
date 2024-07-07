@@ -9,7 +9,7 @@ const DashboardLayout = lazy(() => import('views/layout/dashboard'));
 
 const LoginPage = lazy(() => import('views/auth/login'));
 
-// remove lazy in the future
+// remove lazy loading in the future
 const HomePage = lazy(() => import('views/dashboard/home'));
 const RolesPage = lazy(() => import('views/dashboard/roles'));
 
