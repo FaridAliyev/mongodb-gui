@@ -1,1 +1,1 @@
-# Frontend Boilerplate
+# Graphical User Interface for MongoDB

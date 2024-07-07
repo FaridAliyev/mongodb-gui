@@ -25,10 +25,10 @@ i18n
 	.init({
 		ns: namespaces,
 		defaultNS: 'common',
-		fallbackLng: Language.AZ,
+		fallbackLng: Language.EN,
 		debug: false,
 		load: 'languageOnly',
-		lng: currentLang && Object.values(Language).includes(currentLang as Language) ? currentLang : Language.AZ,
+		lng: currentLang && Object.values(Language).includes(currentLang as Language) ? currentLang : Language.EN,
 		backend: {
 			backends: [
 				LocalStorageBackend, // primary
