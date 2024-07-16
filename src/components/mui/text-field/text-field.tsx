@@ -13,14 +13,15 @@ const TextFieldStyled = styled(TextField)<TextFieldProps>(({ theme }) => ({
 		color: `${theme.palette.text.primary} !important`,
 	},
 	'& .MuiInputBase-root': {
-		borderRadius: 8,
+		borderRadius: '6px !important',
 		backgroundColor: 'transparent !important',
-		border: `1px solid rgba(${theme.palette.customColors.main}, 0.2)`,
+		border: '1px solid rgba(255, 255, 255, 0.4)',
 		transition: theme.transitions.create(['border-color', 'box-shadow'], {
 			duration: theme.transitions.duration.shorter,
 		}),
 		'&:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error):hover': {
-			borderColor: `rgba(${theme.palette.customColors.main}, 0.28)`,
+			border: '1px solid rgba(255, 255, 255, 0.4)',
+			backgroundColor: 'rgba(255, 255, 255, 0.1)!important',
 		},
 		'&:before, &:after': {
 			display: 'none',
@@ -37,7 +38,9 @@ const TextFieldStyled = styled(TextField)<TextFieldProps>(({ theme }) => ({
 				transform: 'translateX(4px)',
 			},
 			'&.MuiInputBase-colorPrimary': {
-				borderColor: theme.palette.primary.main,
+				// borderColor: theme.palette.primary.main,
+				backgroundColor: 'rgba(0, 0, 0, 0.2)!important',
+				border: '1px solid rgba(255, 255, 255, 0.7)',
 			},
 			'&.MuiInputBase-colorSecondary': {
 				borderColor: theme.palette.secondary.main,
@@ -66,9 +69,9 @@ const TextFieldStyled = styled(TextField)<TextFieldProps>(({ theme }) => ({
 		},
 	},
 	'& .MuiInputBase-input': {
-		color: theme.palette.text.secondary,
+		color: 'rgba(255, 255, 255, 0.8)',
 		'&:not(textarea)': {
-			padding: '15.5px 13px',
+			padding: '16px 12px',
 		},
 		'&:not(textarea).MuiInputBase-inputSizeSmall': {
 			padding: '7.5px 13px',

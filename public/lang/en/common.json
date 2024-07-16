@@ -33,5 +33,6 @@
 	"actions": "Actions",
 	"edit": "Edit",
 	"save": "Save",
-	"close": "Close"
+	"close": "Close",
+	"databases": "DATABASES"
 }

@@ -1,6 +1,6 @@
 const typography = {
 	fontFamily: [
-		'Public Sans',
+		'DM Sans',
 		'sans-serif',
 		'-apple-system',
 		'BlinkMacSystemFont',
@@ -38,6 +38,7 @@ const typography = {
 		fontWeight: 500,
 		lineHeight: 1.3334,
 		fontSize: '1.125rem',
+		letterSpacing: '0.15px',
 	},
 	h6: {
 		lineHeight: 1.4,

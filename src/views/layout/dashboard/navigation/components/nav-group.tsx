@@ -1,3 +1,4 @@
+import { IconButton } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Collapse from '@mui/material/Collapse';
@@ -6,8 +7,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import ArrowRightIcon from 'assets/icons/arrow-right.svg?react';
+import DatabaseIcon from 'assets/icons/coins.svg?react';
+import PlusIcon from 'assets/icons/plus.svg?react';
+import TrashIcon from 'assets/icons/trash.svg?react';
 import clsx from 'clsx';
-import Icon from 'components/icon';
 import themeConfig from 'configs/theme/themeConfig';
 import { t } from 'i18next';
 import { Fragment, useEffect } from 'react';
@@ -152,7 +156,7 @@ const NavGroup = (props: Props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const icon = parent && !item.icon ? themeConfig.navSubItemIcon : item.icon;
+	// const icon = parent && !item.icon ? themeConfig.navSubItemIcon : item.icon;
 
 	const menuGroupCollapsedStyles = navCollapsed ? { opacity: 0 } : { opacity: 1 };
 
@@ -161,7 +165,7 @@ const NavGroup = (props: Props) => {
 			<ListItem
 				disablePadding
 				className="nav-group"
-				sx={{ mt: 1, px: '0 !important', flexDirection: 'column' }}
+				sx={{ mt: 0, px: '0 !important', flexDirection: 'column', alignItems: 'flex-start' }}
 				onClick={handleGroupClick}
 			>
 				<ListItemButton
@@ -170,13 +174,15 @@ const NavGroup = (props: Props) => {
 					})}
 					sx={{
 						py: 2,
-						mx: 3.5,
-						borderRadius: 1,
-						width: (theme) => `calc(100% - ${theme.spacing(3.5 * 2)})`,
+						borderRadius: 0.67,
+						width: (theme) => `calc(100% - ${theme.spacing(3.5 * 0)})`,
 						transition: 'padding-left .25s ease-in-out, padding-right .25s ease-in-out',
-						px: navCollapsed ? (collapsedNavWidth - navigationBorderWidth - 22 - 28) / 8 : 4,
+						px: navCollapsed ? (collapsedNavWidth - navigationBorderWidth - 22 - 28) / 8 : 2,
 						'&:hover': {
 							backgroundColor: 'action.hover',
+							'& .hover-icons': {
+								display: 'flex',
+							},
 						},
 						'& .MuiTypography-root, & :not(.menu-item-meta) > svg': {
 							color: 'text.secondary',
@@ -201,54 +207,77 @@ const NavGroup = (props: Props) => {
 						},
 					}}
 				>
+					<Box
+						className="menu-item-meta"
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							'& svg': {
+								color: 'text.disabled',
+								transition: 'transform .25s ease-in-out',
+								...(groupActive.includes(item.title) && {
+									transform: 'rotate(90deg)',
+								}),
+							},
+						}}
+					>
+						{item.badgeContent ? (
+							<Chip
+								size="small"
+								label={item.badgeContent}
+								color={item.badgeColor || 'primary'}
+								sx={{
+									mr: 2,
+									height: 22,
+									minWidth: 22,
+									'& .MuiChip-label': { px: 1.5, textTransform: 'capitalize' },
+								}}
+							/>
+						) : null}
+						{/* <Icon fontSize="1.125rem" icon="tabler:chevron-right" /> */}
+						<ArrowRightIcon />
+					</Box>
 					<ListItemIcon
 						sx={{
 							transition: 'margin .25s ease-in-out',
-							...(parent && navCollapsed ? {} : { mr: 2 }),
+							...(parent && navCollapsed ? {} : { mr: 1 }),
 							...(navCollapsed ? { mr: 0 } : {}), // this condition should come after (parent && navCollapsed && !navHover) condition for proper styling
 							...(parent && item.children ? { ml: 1.5, mr: 3.5 } : {}),
 						}}
 					>
-						<Icon icon={icon as string} {...(parent && { fontSize: '0.625rem' })} />
+						{/* <Icon icon={icon as string} {...(parent && { fontSize: '0.625rem' })} /> */}
+						<DatabaseIcon />
 					</ListItemIcon>
 					<MenuItemTextWrapper sx={{ ...menuGroupCollapsedStyles, ...(isSubToSub ? { ml: 2 } : {}) }}>
 						<Typography
 							{...((themeConfig.menuTextTruncate || (!themeConfig.menuTextTruncate && navCollapsed)) && {
 								noWrap: true,
 							})}
+							sx={{
+								fontSize: 16,
+								fontWeight: 500,
+								color: 'rgba(255, 255, 255, 0.87)!important',
+							}}
 						>
 							{t(`navigation:${item.title}`)}
 						</Typography>
-						<Box
-							className="menu-item-meta"
-							sx={{
-								display: 'flex',
-								alignItems: 'center',
-								'& svg': {
-									color: 'text.disabled',
-									transition: 'transform .25s ease-in-out',
-									...(groupActive.includes(item.title) && {
-										transform: 'rotate(90deg)',
-									}),
-								},
-							}}
-						>
-							{item.badgeContent ? (
-								<Chip
-									size="small"
-									label={item.badgeContent}
-									color={item.badgeColor || 'primary'}
-									sx={{
-										mr: 2,
-										height: 22,
-										minWidth: 22,
-										'& .MuiChip-label': { px: 1.5, textTransform: 'capitalize' },
-									}}
-								/>
-							) : null}
-							<Icon fontSize="1.125rem" icon="tabler:chevron-right" />
-						</Box>
 					</MenuItemTextWrapper>
+					<Box className="hover-icons" sx={{ display: 'none', alignItems: 'center' }}>
+						<IconButton
+							sx={{ p: 0 }}
+							onClick={(e) => e.stopPropagation()}
+							onMouseDown={(e) => e.stopPropagation()}
+						>
+							<PlusIcon />
+						</IconButton>
+						<IconButton
+							sx={{ p: 0 }}
+							onClick={(e) => e.stopPropagation()}
+							onMouseDown={(e) => e.stopPropagation()}
+						>
+							<TrashIcon />
+						</IconButton>
+					</Box>
 				</ListItemButton>
 				<Collapse
 					component="ul"

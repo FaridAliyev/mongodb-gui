@@ -15,7 +15,7 @@ interface Props {
 	navMenuProps: LayoutProps['verticalLayoutProps']['navMenu']['componentProps'];
 }
 
-const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
+const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>(({ theme }) => ({
 	overflowX: 'hidden',
 	transition: 'width .25s ease-in-out',
 	'& ul': {
@@ -30,8 +30,10 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>({
 		right: 'unset',
 		overflowX: 'hidden',
 		transition: 'width .25s ease-in-out, box-shadow .25s ease-in-out',
+		background: 'linear-gradient(173.4deg, #0092a6, #006270)',
+		padding: theme.spacing(12.5, 7),
 	},
-});
+}));
 
 const Drawer = (props: Props) => {
 	const {
@@ -90,6 +92,7 @@ const Drawer = (props: Props) => {
 					borderRight: (theme) =>
 						navigationBorderWidth === 0 ? 0 : `${navigationBorderWidth}px solid ${theme.palette.divider}`,
 					...userNavMenuPaperStyle,
+					position: 'relative',
 				},
 				...navMenuProps?.PaperProps,
 			}}

@@ -30,6 +30,7 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin): Palette => {
 			trackBg: mode === 'light' ? '#F1F0F2' : '#363B54',
 			avatarBg: mode === 'light' ? '#DBDADE' : '#4A5072',
 			tableHeaderBg: mode === 'light' ? '#F6F6F7' : '#4A5072',
+			blue: '#0092a6',
 		},
 		mode: mode,
 		common: {
@@ -90,7 +91,7 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin): Palette => {
 		},
 		text: {
 			primary: `rgba(${mainColor}, 0.78)`,
-			secondary: `rgba(${mainColor}, 0.68)`,
+			secondary: `#fbfbfb`,
 			disabled: `rgba(${mainColor}, 0.42)`,
 		},
 		divider: `rgba(${mainColor}, 0.16)`,
@@ -100,8 +101,8 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin): Palette => {
 		},
 		action: {
 			active: `rgba(${mainColor}, 0.54)`,
-			hover: `rgba(${mainColor}, 0.04)`,
-			selected: `rgba(${mainColor}, 0.06)`,
+			hover: `rgba(255, 255, 255, 0.1)`,
+			selected: `rgba(255, 255, 255, 0.2)`,
 			selectedOpacity: 0.06,
 			disabled: `rgba(${mainColor}, 0.26)`,
 			disabledBackground: `rgba(${mainColor}, 0.12)`,

@@ -3,14 +3,20 @@ import { VerticalNavItemsType } from '../types';
 const menuItems = (): VerticalNavItemsType => {
 	return [
 		{
-			title: 'home',
+			title: 'admin',
 			icon: 'tabler:smart-home',
-			path: '/',
+			children: [
+				{
+					title: 'config1',
+					path: '/dashboard',
+				},
+			],
 		},
 		{
 			title: 'roles',
 			icon: 'tabler:settings',
 			path: '/roles',
+			children: [],
 		},
 	];
 };

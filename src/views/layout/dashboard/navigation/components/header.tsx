@@ -2,10 +2,8 @@ import { Link, LinkProps } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import Typography, { TypographyProps } from '@mui/material/Typography';
-import HeaderLogo from 'assets/img/socar.png';
+import HeaderLogo from 'assets/img/mongodb.svg';
 import Icon from 'components/icon';
-import themeConfig from 'configs/theme/themeConfig';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 
 import { LayoutProps } from '../../types';
@@ -25,17 +23,10 @@ interface Props {
 const MenuHeaderWrapper = styled(Box)<BoxProps>(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
-	justifyContent: 'space-between',
-	paddingRight: theme.spacing(3.5),
+	justifyContent: 'center',
 	transition: 'padding .25s ease-in-out',
 	minHeight: theme.mixins.toolbar.minHeight,
 }));
-
-const HeaderTitle = styled(Typography)<TypographyProps>({
-	fontWeight: 700,
-	lineHeight: '24px',
-	transition: 'opacity .25s ease-in-out, margin .25s ease-in-out',
-});
 
 const LinkStyled = styled(Link)<LinkProps | RouterLinkProps>({
 	display: 'flex',
@@ -44,49 +35,31 @@ const LinkStyled = styled(Link)<LinkProps | RouterLinkProps>({
 });
 
 const NavHeader = (props: Props) => {
-	const {
-		hidden,
-		settings,
-		collapsedNavWidth,
-		toggleNavVisibility,
-		navigationBorderWidth,
-		navMenuBranding: userNavMenuBranding,
-	} = props;
+	const { hidden, toggleNavVisibility, navMenuBranding: userNavMenuBranding } = props;
 
-	const { navCollapsed } = settings;
-
-	const menuCollapsedStyles = navCollapsed ? { opacity: 0 } : { opacity: 1 };
-
-	const menuHeaderPaddingLeft = () => {
-		if (navCollapsed) {
-			if (userNavMenuBranding) {
-				return 0;
-			} else {
-				return (collapsedNavWidth - navigationBorderWidth - 34) / 8;
-			}
-		} else {
-			return 6;
-		}
-	};
+	// const menuCollapsedStyles = navCollapsed ? { opacity: 0 } : { opacity: 1 };
 
 	return (
-		<MenuHeaderWrapper className="nav-header" sx={{ pl: menuHeaderPaddingLeft() }}>
+		<MenuHeaderWrapper className="nav-header">
 			{userNavMenuBranding ? (
 				userNavMenuBranding(props)
 			) : (
 				<LinkStyled to="/" component={RouterLink}>
 					<img src={HeaderLogo} alt="Header Logo" />
-					<HeaderTitle variant="h4" sx={{ ...menuCollapsedStyles, ...(navCollapsed ? {} : { ml: 2.5 }) }}>
-						{themeConfig.templateName}
-					</HeaderTitle>
 				</LinkStyled>
 			)}
-
 			{hidden && (
 				<IconButton
 					disableRipple
 					disableFocusRipple
-					sx={{ p: 0, color: 'text.secondary', backgroundColor: 'transparent !important' }}
+					sx={{
+						p: 0,
+						color: 'customColors.lightPaperBg',
+						backgroundColor: 'transparent !important',
+						position: 'absolute',
+						right: 20,
+						top: 20,
+					}}
 					onClick={toggleNavVisibility}
 				>
 					<Icon icon="tabler:x" fontSize="1.25rem" />

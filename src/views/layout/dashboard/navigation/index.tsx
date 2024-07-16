@@ -1,9 +1,17 @@
+import { IconButton, InputAdornment, Typography } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
 import List from '@mui/material/List';
 import { createTheme, responsiveFontSizes, styled, ThemeProvider } from '@mui/material/styles';
+import DatabaseIcon from 'assets/icons/database.svg?react';
+import LaptopIcon from 'assets/icons/laptop.svg?react';
+import PlusIcon from 'assets/icons/plus.svg?react';
+import RefreshIcon from 'assets/icons/refresh.svg?react';
+import SearchIcon from 'assets/icons/search.svg?react';
+import { CustomTextField } from 'components/mui/text-field';
 import themeConfig from 'configs/theme/themeConfig';
 import themeOptions from 'configs/theme/ThemeOptions';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { hexToRGBA } from 'utils/hex-to-rgba';
 
 import { LayoutProps } from '../types';
@@ -61,6 +69,8 @@ const Navigation = (props: Props) => {
 		navMenuContent: userNavMenuContent,
 	} = props;
 
+	const { t } = useTranslation();
+
 	const [groupActive, setGroupActive] = useState<string[]>([]);
 	const [currentActiveGroup, setCurrentActiveGroup] = useState<string[]>([]);
 
@@ -86,6 +96,29 @@ const Navigation = (props: Props) => {
 		<ThemeProvider theme={darkTheme}>
 			<Drawer {...props} navigationBorderWidth={navigationBorderWidth}>
 				<NavHeader {...props} />
+				<Box
+					sx={{
+						display: 'flex',
+						alignItems: 'center',
+						gap: (theme) => theme.spacing(2.5),
+						backgroundColor: (theme) => theme.palette.customColors.lightPaperBg,
+						padding: (theme) => theme.spacing(0, 5),
+						margin: (theme) => theme.spacing(12.5, 0),
+						borderRadius: (theme) => theme.spacing(1),
+						boxShadow: '0px 4px 13.9px rgba(47, 47, 47, 0.25)',
+						'& svg path': {
+							stroke: (theme) => theme.palette.customColors.blue,
+						},
+					}}
+				>
+					<LaptopIcon />
+					<Typography
+						variant="subtitle1"
+						sx={{ fontWeight: 500, lineHeight: '47px', color: (theme) => theme.palette.customColors.blue }}
+					>
+						localhost:27017
+					</Typography>
+				</Box>
 				{beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'fixed'
 					? beforeNavMenuContent(navMenuContentProps)
 					: null}
@@ -100,15 +133,67 @@ const Navigation = (props: Props) => {
 						{userNavMenuContent ? (
 							userNavMenuContent(navMenuContentProps)
 						) : (
-							<List className="nav-items" sx={{ pt: 0, '& > :first-of-type': { mt: '0' } }}>
-								<VerticalNavItems
-									groupActive={groupActive}
-									setGroupActive={setGroupActive}
-									currentActiveGroup={currentActiveGroup}
-									setCurrentActiveGroup={setCurrentActiveGroup}
-									{...props}
-								/>
-							</List>
+							<>
+								<Box
+									sx={{
+										padding: (theme) => theme.spacing(0, 2, 0, 2.5),
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'space-between',
+									}}
+								>
+									<Box
+										sx={{
+											display: 'flex',
+											alignItems: 'center',
+											gap: (theme) => theme.spacing(2),
+										}}
+									>
+										<DatabaseIcon />
+										<Typography variant="h5" sx={{ fontSize: 20, color: 'text.secondary' }}>
+											{t('databases')}
+										</Typography>
+									</Box>
+									<Box>
+										<IconButton>
+											<RefreshIcon />
+										</IconButton>
+										<IconButton sx={{ p: 0 }}>
+											<PlusIcon />
+										</IconButton>
+									</Box>
+								</Box>
+								<Box
+									sx={{
+										margin: (theme) => theme.spacing(7.5, 0),
+										'& .MuiFormControl-root': {
+											margin: 0,
+										},
+									}}
+								>
+									<CustomTextField
+										sx={{ mr: 4, mb: 2 }}
+										placeholder={t('search')}
+										size="medium"
+										InputProps={{
+											startAdornment: (
+												<InputAdornment position="start">
+													<SearchIcon />
+												</InputAdornment>
+											),
+										}}
+									/>
+								</Box>
+								<List className="nav-items" sx={{ pt: 0, '& > :first-of-type': { mt: '0' } }}>
+									<VerticalNavItems
+										groupActive={groupActive}
+										setGroupActive={setGroupActive}
+										currentActiveGroup={currentActiveGroup}
+										setCurrentActiveGroup={setCurrentActiveGroup}
+										{...props}
+									/>
+								</List>
+							</>
 						)}
 						{afterNavMenuContent && afterVerticalNavMenuContentPosition === 'static'
 							? afterNavMenuContent(navMenuContentProps)
