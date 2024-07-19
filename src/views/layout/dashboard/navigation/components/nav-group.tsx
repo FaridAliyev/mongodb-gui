@@ -256,7 +256,6 @@ const NavGroup = (props: Props) => {
 							sx={{
 								fontSize: 16,
 								fontWeight: 500,
-								color: 'rgba(255, 255, 255, 0.87)!important',
 							}}
 						>
 							{t(`navigation:${item.title}`)}

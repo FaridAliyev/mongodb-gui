@@ -34,5 +34,11 @@
 	"edit": "Edit",
 	"save": "Save",
 	"close": "Close",
-	"databases": "DATABASES"
+	"databases": "Databases",
+	"createDatabase": "Create Database",
+	"dbName": "Database name",
+	"enterDbName": "Enter database name",
+	"collectionName": "Collection name",
+	"enterCollectionName": "Enter collection name",
+	"createDb": "Create Database"
 }

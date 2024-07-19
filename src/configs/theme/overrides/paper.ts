@@ -3,6 +3,7 @@ export default {
 		styleOverrides: {
 			root: {
 				backgroundImage: 'none',
+				backgroundColor: '#fbfbfb',
 			},
 		},
 	},

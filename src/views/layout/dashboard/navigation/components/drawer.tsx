@@ -30,7 +30,7 @@ const SwipeableDrawer = styled(MuiSwipeableDrawer)<SwipeableDrawerProps>(({ them
 		right: 'unset',
 		overflowX: 'hidden',
 		transition: 'width .25s ease-in-out, box-shadow .25s ease-in-out',
-		background: 'linear-gradient(173.4deg, #0092a6, #006270)',
+		background: '#e0e9ff',
 		padding: theme.spacing(12.5, 7),
 	},
 }));

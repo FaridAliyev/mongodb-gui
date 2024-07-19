@@ -39,13 +39,13 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin): Palette => {
 		},
 		primary: {
 			light: '#8479F2',
-			main: '#7367F0',
-			dark: '#655BD3',
+			main: '#526bac',
+			dark: '#232e49',
 			contrastText: whiteColor,
 		},
 		secondary: {
 			light: '#B2B4B8',
-			main: '#A8AAAE',
+			main: 'rgba(82, 107, 172, 0.6)',
 			dark: '#949699',
 			contrastText: whiteColor,
 		},
@@ -91,7 +91,7 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin): Palette => {
 		},
 		text: {
 			primary: `rgba(${mainColor}, 0.78)`,
-			secondary: `#fbfbfb`,
+			secondary: `#222c45`,
 			disabled: `rgba(${mainColor}, 0.42)`,
 		},
 		divider: `rgba(${mainColor}, 0.16)`,
@@ -101,8 +101,8 @@ const DefaultPalette = (mode: PaletteMode, skin: Skin): Palette => {
 		},
 		action: {
 			active: `rgba(${mainColor}, 0.54)`,
-			hover: `rgba(255, 255, 255, 0.1)`,
-			selected: `rgba(255, 255, 255, 0.2)`,
+			hover: `rgba(34, 44, 69, 0.1)`,
+			selected: `rgba(34, 44, 69, 0.2)`,
 			selectedOpacity: 0.06,
 			disabled: `rgba(${mainColor}, 0.26)`,
 			disabledBackground: `rgba(${mainColor}, 0.12)`,

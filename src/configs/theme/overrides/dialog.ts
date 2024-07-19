@@ -25,7 +25,7 @@ const Dialog = (skin: Skin) => {
 		MuiDialogTitle: {
 			styleOverrides: {
 				root: ({ theme }: OwnerStateThemeType) => ({
-					padding: theme.spacing(5, 6, 1),
+					padding: theme.spacing(5, 6, 0),
 				}),
 			},
 		},

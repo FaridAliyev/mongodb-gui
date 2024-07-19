@@ -149,7 +149,7 @@ const NavLink = ({
 						sx={{
 							fontSize: 16,
 							fontWeight: 500,
-							color: 'rgba(255, 255, 255, 0.87)!important',
+							color: 'rgba(0, 0, 0, 0.87)!important',
 						}}
 					>
 						{t(`navigation:${item.title}`)}

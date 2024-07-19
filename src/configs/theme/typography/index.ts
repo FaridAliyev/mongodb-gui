@@ -58,7 +58,7 @@ const typography = {
 		fontSize: '0.9375rem',
 	},
 	body2: {
-		fontSize: '0.8125rem',
+		fontSize: '0.875rem',
 		lineHeight: 1.53846154,
 	},
 	button: {

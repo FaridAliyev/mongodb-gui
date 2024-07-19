@@ -1,11 +1,11 @@
 import { Theme } from '@mui/material/styles';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GlobalStyles = (_theme: Theme) => {
+const GlobalStyles = (theme: Theme) => {
 	return {
 		'.demo-space-x > *': {
-			marginTop: '1rem !important',
-			marginRight: '1rem !important',
+			marginTop: `${theme.spacing(7.5)} !important`,
+			marginRight: `${theme.spacing(2.5)} !important`,
 		},
 		'.demo-space-y > *:not(:last-of-type)': {
 			marginBottom: '1rem',

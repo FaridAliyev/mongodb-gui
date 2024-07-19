@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTitle, IconButton, IconButtonProps, Typography } from '@mui/material';
+import { Box, Dialog, DialogContent, DialogTitle, IconButton, IconButtonProps, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Icon from 'components/icon';
 import { ReactNode } from 'react';
@@ -21,11 +21,12 @@ const CustomCloseButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
 interface ModalProps {
 	open: boolean;
 	title: string;
+	icon?: ReactNode;
 	onClose: () => void;
 	children: ReactNode;
 }
 
-export const Modal = ({ open, onClose, title, children }: ModalProps) => {
+export const Modal = ({ open, onClose, title, icon, children }: ModalProps) => {
 	return (
 		<Dialog
 			fullWidth
@@ -37,19 +38,30 @@ export const Modal = ({ open, onClose, title, children }: ModalProps) => {
 			<DialogTitle
 				component="div"
 				sx={{
-					textAlign: 'center',
-					px: (theme) => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
-					pt: (theme) => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`],
+					px: (theme) => [`${theme.spacing(5)} !important`, `${theme.spacing(10)} !important`],
+					pt: (theme) => [`${theme.spacing(8)} !important`, `${theme.spacing(10)} !important`],
 				}}
 			>
-				<Typography variant="h3" sx={{ mb: 2 }}>
-					{title}
-				</Typography>
+				<Box sx={{ display: 'flex', alignItems: 'center', gap: (theme) => theme.spacing(2.5) }}>
+					{icon}
+					<Typography
+						variant="h3"
+						sx={{
+							fontSize: 24,
+							color: '#323232',
+							fontWeight: 700,
+							letterSpacing: '0.15px',
+						}}
+					>
+						{title}
+					</Typography>
+				</Box>
 			</DialogTitle>
 			<DialogContent
 				sx={{
-					px: (theme) => [`${theme.spacing(5)} !important`, `${theme.spacing(15)} !important`],
-					pb: (theme) => [`${theme.spacing(8)} !important`, `${theme.spacing(12.5)} !important`],
+					px: (theme) => [`${theme.spacing(5)} !important`, `${theme.spacing(10)} !important`],
+					pb: (theme) => [`${theme.spacing(8)} !important`, `${theme.spacing(10)} !important`],
+					pt: (theme) => [`${theme.spacing(6)} !important`, `${theme.spacing(7.5)} !important`],
 				}}
 			>
 				<CustomCloseButton onClick={onClose}>

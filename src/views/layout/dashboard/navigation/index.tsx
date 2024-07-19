@@ -2,11 +2,14 @@ import { IconButton, InputAdornment, Typography } from '@mui/material';
 import Box, { BoxProps } from '@mui/material/Box';
 import List from '@mui/material/List';
 import { createTheme, responsiveFontSizes, styled, ThemeProvider } from '@mui/material/styles';
+import DatabaseIconLg from 'assets/icons/coins-lg.svg?react';
 import DatabaseIcon from 'assets/icons/database.svg?react';
 import LaptopIcon from 'assets/icons/laptop.svg?react';
 import PlusIcon from 'assets/icons/plus.svg?react';
 import RefreshIcon from 'assets/icons/refresh.svg?react';
 import SearchIcon from 'assets/icons/search.svg?react';
+import { CreateDatabaseForm } from 'components/create-database-form';
+import { Modal } from 'components/modal';
 import { CustomTextField } from 'components/mui/text-field';
 import themeConfig from 'configs/theme/themeConfig';
 import themeOptions from 'configs/theme/ThemeOptions';
@@ -73,6 +76,9 @@ const Navigation = (props: Props) => {
 
 	const [groupActive, setGroupActive] = useState<string[]>([]);
 	const [currentActiveGroup, setCurrentActiveGroup] = useState<string[]>([]);
+	const [createDbDialogOpen, setCreateDbDialogOpen] = useState(false);
+
+	const toggleCreateDbDialog = () => setCreateDbDialogOpen(!createDbDialogOpen);
 
 	const shadowRef = useRef(null);
 
@@ -103,18 +109,18 @@ const Navigation = (props: Props) => {
 						gap: (theme) => theme.spacing(2.5),
 						backgroundColor: (theme) => theme.palette.customColors.lightPaperBg,
 						padding: (theme) => theme.spacing(0, 5),
-						margin: (theme) => theme.spacing(12.5, 0),
+						margin: (theme) => theme.spacing(10, 0),
 						borderRadius: (theme) => theme.spacing(1),
-						boxShadow: '0px 4px 13.9px rgba(47, 47, 47, 0.25)',
+						border: (theme) => `1px solid ${theme.palette.text.secondary}`,
 						'& svg path': {
-							stroke: (theme) => theme.palette.customColors.blue,
+							stroke: 'text.secondary',
 						},
 					}}
 				>
 					<LaptopIcon />
 					<Typography
 						variant="subtitle1"
-						sx={{ fontWeight: 500, lineHeight: '47px', color: (theme) => theme.palette.customColors.blue }}
+						sx={{ fontWeight: 500, lineHeight: '47px', color: 'text.secondary' }}
 					>
 						localhost:27017
 					</Typography>
@@ -136,7 +142,6 @@ const Navigation = (props: Props) => {
 							<>
 								<Box
 									sx={{
-										padding: (theme) => theme.spacing(0, 2, 0, 2.5),
 										display: 'flex',
 										alignItems: 'center',
 										justifyContent: 'space-between',
@@ -150,17 +155,34 @@ const Navigation = (props: Props) => {
 										}}
 									>
 										<DatabaseIcon />
-										<Typography variant="h5" sx={{ fontSize: 20, color: 'text.secondary' }}>
+										<Typography
+											variant="h5"
+											sx={{ fontSize: 20, color: 'text.secondary', fontWeight: 700 }}
+										>
 											{t('databases')}
 										</Typography>
 									</Box>
-									<Box>
-										<IconButton>
+									<Box
+										sx={{
+											display: 'flex',
+											alignItems: 'center',
+											gap: (theme) => theme.spacing(2.5),
+										}}
+									>
+										<IconButton sx={{ p: 0 }}>
 											<RefreshIcon />
 										</IconButton>
-										<IconButton sx={{ p: 0 }}>
+										<IconButton sx={{ p: 0 }} onClick={toggleCreateDbDialog}>
 											<PlusIcon />
 										</IconButton>
+										<Modal
+											open={createDbDialogOpen}
+											title={t('createDatabase')}
+											icon={<DatabaseIconLg />}
+											onClose={toggleCreateDbDialog}
+										>
+											<CreateDatabaseForm handleDialogToggle={toggleCreateDbDialog} />
+										</Modal>
 									</Box>
 								</Box>
 								<Box

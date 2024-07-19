@@ -9,7 +9,7 @@ const getInitialLanguage = (): Language => {
 	let storedLanguage = localStorage.getItem(LANGUAGE_KEY);
 
 	if (!storedLanguage || !Object.values(Language).includes(storedLanguage as Language)) {
-		storedLanguage = Language.AZ;
+		storedLanguage = Language.EN;
 		localStorage.setItem(LANGUAGE_KEY, storedLanguage);
 	}
 

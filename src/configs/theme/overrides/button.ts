@@ -65,9 +65,9 @@ const Button = () => {
 				},
 				{
 					props: { variant: 'outlined', color: 'secondary' },
-					style: ({ theme }: OwnerStateThemeType) => ({
+					style: () => ({
 						'&:hover': {
-							backgroundColor: hexToRGBA(theme.palette.secondary.main, 0.08),
+							backgroundColor: '#f3f7ff',
 						},
 					}),
 				},
@@ -156,6 +156,7 @@ const Button = () => {
 				root: ({ ownerState, theme }: OwnerStateThemeType) => ({
 					minWidth: 50,
 					textTransform: 'none',
+					letterSpacing: '0.15px',
 					'&:not(.Mui-disabled):active': {
 						transform: 'scale(0.98)',
 					},
@@ -222,6 +223,7 @@ const Button = () => {
 					}),
 					...(ownerState.color === 'secondary' && {
 						borderColor: theme.palette.secondary.main,
+						color: theme.palette.primary.main,
 					}),
 					...(ownerState.color === 'success' && {
 						borderColor: theme.palette.success.main,
@@ -251,17 +253,17 @@ const Button = () => {
 					}),
 				}),
 				sizeLarge: ({ ownerState, theme }: OwnerStateThemeType) => ({
-					lineHeight: 1.295,
+					lineHeight: 1,
 					borderRadius: '8px',
-					fontSize: '1.0625rem',
+					fontSize: '1rem',
 					...(ownerState.variant === 'text' && {
 						padding: theme.spacing(3.25, 4),
 					}),
 					...((ownerState.variant === 'contained' || ownerState.variant === 'tonal') && {
-						padding: theme.spacing(3.25, 6.5),
+						padding: theme.spacing(4),
 					}),
 					...(ownerState.variant === 'outlined' && {
-						padding: theme.spacing(3, 6.25),
+						padding: theme.spacing(4),
 					}),
 				}),
 			},

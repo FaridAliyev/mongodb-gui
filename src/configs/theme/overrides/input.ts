@@ -12,8 +12,13 @@ const input = () => {
 					color: `${theme.palette.text.primary} !important`,
 				}),
 				outlined: {
+					transform: 'translate(15%, 115%)',
 					'&.MuiInputLabel-shrink': {
-						transform: 'translate(14px, -8px) scale(0.75)',
+						transform: 'translate(18px, -8px) scale(0.75)',
+						fontSize: 12,
+						fontWeight: 700,
+						color: '#323232',
+						letterSpacing: '0.15px',
 					},
 				},
 			},
@@ -56,8 +61,11 @@ const input = () => {
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: ({ theme }: OwnerStateThemeType) => ({
+					// color: 'rgba(164, 164, 164, 0.8)',
+					fontSize: 14,
+					letterSpacing: '0.15px',
 					'&:not(.MuiInputBase-sizeSmall)': {
-						borderRadius: 8,
+						borderRadius: 4,
 					},
 					'&:hover:not(.Mui-focused):not(.Mui-disabled):not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
 						borderColor: `rgba(${theme.palette.customColors.main}, 0.28)`,
@@ -66,7 +74,7 @@ const input = () => {
 						borderColor: theme.palette.error.main,
 					},
 					'& .MuiOutlinedInput-notchedOutline': {
-						borderColor: `rgba(${theme.palette.customColors.main}, 0.2)`,
+						borderColor: `rgba(50, 50, 50, 0.23)`,
 					},
 					'&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
 						borderColor: theme.palette.text.disabled,
