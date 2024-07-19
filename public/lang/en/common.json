@@ -40,5 +40,9 @@
 	"enterDbName": "Enter database name",
 	"collectionName": "Collection name",
 	"enterCollectionName": "Enter collection name",
-	"createDb": "Create Database"
+	"createDb": "Create Database",
+	"createCollection": "Create Collection",
+	"dropDatabase": "Drop Database",
+	"drop": "Drop",
+	"dropCollection": "Drop Collection"
 }

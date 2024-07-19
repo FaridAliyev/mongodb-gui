@@ -7,14 +7,19 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import AlertIcon from 'assets/icons/alert.svg?react';
 import ArrowRightIcon from 'assets/icons/arrow-right.svg?react';
 import DatabaseIcon from 'assets/icons/coins.svg?react';
+import FolderIconLg from 'assets/icons/folder-lg.svg?react';
 import PlusIcon from 'assets/icons/plus.svg?react';
 import TrashIcon from 'assets/icons/trash.svg?react';
 import clsx from 'clsx';
+import { CreateCollectionForm } from 'components/create-collection-form';
+import { DeleteForm } from 'components/delete-form';
+import { Modal } from 'components/modal';
 import themeConfig from 'configs/theme/themeConfig';
 import { t } from 'i18next';
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { hasActiveChild, removeChildren } from 'utils/nav-utils';
 
@@ -63,6 +68,17 @@ const NavGroup = (props: Props) => {
 
 	const { pathname } = useLocation();
 	const { navCollapsed, verticalNavToggleType } = settings;
+
+	const [createCollectionDialogOpen, setCreateCollectionDialogOpen] = useState(false);
+	const [dropDatabaseDialogOpen, setDropDatabaseDialogOpen] = useState(false);
+
+	const toggleCreateCollectionDialog = () => {
+		setCreateCollectionDialogOpen(!createCollectionDialogOpen);
+	};
+
+	const toggleDropDatabaseDialog = () => {
+		setDropDatabaseDialogOpen(!dropDatabaseDialogOpen);
+	};
 
 	// ** Accordion menu group open toggle
 	const toggleActiveGroup = (item: NavGroupType, parent: NavGroupType | undefined) => {
@@ -234,7 +250,6 @@ const NavGroup = (props: Props) => {
 								}}
 							/>
 						) : null}
-						{/* <Icon fontSize="1.125rem" icon="tabler:chevron-right" /> */}
 						<ArrowRightIcon />
 					</Box>
 					<ListItemIcon
@@ -264,14 +279,20 @@ const NavGroup = (props: Props) => {
 					<Box className="hover-icons" sx={{ display: 'none', alignItems: 'center' }}>
 						<IconButton
 							sx={{ p: 0 }}
-							onClick={(e) => e.stopPropagation()}
+							onClick={(e) => {
+								e.stopPropagation();
+								toggleCreateCollectionDialog();
+							}}
 							onMouseDown={(e) => e.stopPropagation()}
 						>
 							<PlusIcon />
 						</IconButton>
 						<IconButton
 							sx={{ p: 0 }}
-							onClick={(e) => e.stopPropagation()}
+							onClick={(e) => {
+								e.stopPropagation();
+								toggleDropDatabaseDialog();
+							}}
 							onMouseDown={(e) => e.stopPropagation()}
 						>
 							<TrashIcon />
@@ -298,6 +319,22 @@ const NavGroup = (props: Props) => {
 					/>
 				</Collapse>
 			</ListItem>
+			<Modal
+				open={createCollectionDialogOpen}
+				title={t('createCollection')}
+				icon={<FolderIconLg />}
+				onClose={toggleCreateCollectionDialog}
+			>
+				<CreateCollectionForm handleDialogToggle={toggleCreateCollectionDialog} />
+			</Modal>
+			<Modal
+				open={dropDatabaseDialogOpen}
+				title={t('dropDatabase')}
+				icon={<AlertIcon />}
+				onClose={toggleDropDatabaseDialog}
+			>
+				<DeleteForm handleDialogToggle={toggleDropDatabaseDialog} />
+			</Modal>
 		</Fragment>
 	);
 };

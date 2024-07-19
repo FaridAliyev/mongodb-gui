@@ -4,6 +4,7 @@ export default {
 			root: {
 				backgroundImage: 'none',
 				backgroundColor: '#fbfbfb',
+				borderRadius: 12,
 			},
 		},
 	},
