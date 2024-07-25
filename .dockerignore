@@ -1,0 +1,20 @@
+# Node modules
+node_modules
+
+# Git files
+.git
+.gitignore
+
+# Development environment files
+.vscode
+.idea
+
+# Log files
+*.log
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Other temporary or unnecessary files
+tmp
