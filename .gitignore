@@ -30,5 +30,3 @@ build
 *.local
 
 **/.DS_Store
-
-.env
